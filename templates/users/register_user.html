@@ -1,0 +1,75 @@
+<form id='signupform' action='{%url register%}' method='POST'>
+	<input type='hidden' name='next' value='{{next}}'/>
+	<table>
+		<tr>
+			<td><label for='id_remail'>Email</label></td>
+			<td>{{signupform.remail}}{{signupform.remail.errors}}<span id='email_status_check'></span></td>
+		</tr>
+		<tr>
+			<td><label for='id_rpassword'>Password</label></td>
+			<td>{{signupform.rpassword}}{{signupform.rpassword.errors}}</td>
+		</tr>
+		<tr>
+			<td><label for='id_home_place'>Type of Service</label></td>
+			<td>
+				<ul id='servicetypes'>
+					<li id='regular' class='selected_service_type' onClick='javascript:show_regular();'>Regular(Home/Mess)</li>
+					<li id='ondemand' class='unselected_service_type' onClick='javascript:show_ondemand();'>On Demand(Restaurant)</li>
+				</ul>
+				<input type='hidden' value='regular' id='id_service_type' name='service_type'/>
+				<div id='service_container'>
+					<div id='houseaddress' style='float:left;'>
+						<div id='home_place' class='form-row'>
+							<label for='id_home_place'>House Number or Mess Name</label>
+							<br/>{{signupform.home_place}}{{signupform.home_place.errors}}
+						</div>
+						<div id='home_landmark' class='form-row'>
+							<label for='id_home_landmark'>Landmark</label>
+							<br/>{{signupform.home_landmark}}{{signupform.home_landmark.errors}}
+						</div>
+						<div id='home_area' class='form-row'>
+							<label for='id_home_area'>Street/Colony/Junction</label>
+							<br/>{{signupform.home_area}}{{signupform.home_area.errors}}
+						</div>
+						<div id='home_zip' class='form-row'>
+							<label for='id_home_zip'>Zip</label>
+							<br/>{{signupform.home_zip}}{{signupform.home_zip.errors}}
+						</div>
+					</div><!-- end of houseaddress -->
+					<div id='officeaddress' style='float:left;'>
+						<div id='office_place' class='form-row'>
+							<label for='id_office_place'>Company Name/Building</label>
+							<br/>{{signupform.office_place}}{{signupform.office_place.errors}}
+						</div>
+						<div id='office_landmark' class='form-row'>
+							<label for='id_office_landmark'>Landmark</label>
+							<br/>{{signupform.office_landmark}}{{signupform.office_landmark.errors}}
+						</div>
+						<div id='office_area' class='form-row'>
+							<label for='id_office_area'>Area/Junction</label>
+							<br/>{{signupform.office_area}}{{signupform.office_area.errors}}
+						</div>
+						<div id='office_zip' class='form-row'>
+							<label for='id_office_zip'>Zip</label>
+							<br/>{{signupform.office_zip}}{{signupform.office_zip.errors}}
+						</div>
+					</div><!-- end of officeaddress -->
+					<div class='clear'></div>
+				</div><!-- end of service_container-->
+			</td>
+		</tr>
+		<tr>
+			<td><label for='id_mobile'>Mobile Number</label></td>
+			<td>
+				{{signupform.mobile}}
+				{{signupform.mobile.errors}}
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<input type='image' value='' src='/site_media/img/register.png' alt='submit'/>
+			</td>
+		</tr>
+	</table>
+</form>

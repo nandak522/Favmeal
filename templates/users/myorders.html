@@ -1,0 +1,45 @@
+{%extends 'globals/singlepane_base.html'%}
+{%block title%}My Orders - FavMeal{%endblock%}
+{%block content%}
+<div id='myorders' class='span-24'>
+{%if userorders%}
+		{%load restaurants_tags%}
+		<table>
+			<tr class='tableheader'>
+				<td>Order Code</td>
+				<td>Items</td>
+				<td>Restaurant</td>
+				<td>Cost</td>
+				<!-- <td>Status</td> -->
+				<td>Delivery Time</td>
+				<!-- <td>Amount Paid</td> -->
+			</tr>
+			{%for order in userorders%}
+			<tr id='order_{{order.id}}' class={%cycle 'table_evenrow' 'table_oddrow'%}>
+				<td>{{order.code}}</td>
+				<td style='width:40%;'>{%renderorderedmenuitems order.items%}</td>
+				<td>{{order.get_restaurant.name}}</td>
+				<td>{{order.totalcost}}</td>
+				<!-- <td>
+					{%ifequal order.status '0'%}
+						Yet to Start
+					{%else%}
+						{%ifequal order.status '1'%}
+							Under Process
+						{%else%}
+							{%ifequal order.status '2'%}
+								Done
+							{%endifequal%}
+						{%endifequal%}
+					{%endifequal%}
+				</td> -->
+				<td>{{order.deliverytime|date:"f A"}}</td>
+				<!-- <td>{%if order.is_amountpaid%}Yes{%else%}No{%endif%}</td> -->
+			</tr>
+			{%endfor%}
+		</table>
+{%else%}
+	<h3 class='special_red'>You didn't order anything till now. Please <a class='special_red_link' style='border-bottom:1px solid #666;' href='{%url restaurantfood%}'>Try Ordering</a></h3>
+{%endif%}
+</div><!-- end of myorders -->
+{%endblock%}

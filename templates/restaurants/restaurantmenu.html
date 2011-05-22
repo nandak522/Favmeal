@@ -1,0 +1,26 @@
+{%if menu%}
+	<input type='hidden' value='{{restaurant.alias}}' id='id_selected_restaurant' name='selected_restaurant'/>
+	<a name='top'>&nbsp;</a>
+	<div>
+		{%for tag_name,tag_items in grouped_menu.items%}
+			<a class='special_black_link' href='#{{tag_name|title}}'>{{tag_name|title}}</a>{%if not forloop.last%}&nbsp;|&nbsp;{%endif%}
+		{%endfor%}		
+	</div>
+	{%for tag_name,tag_items in grouped_menu.items%}
+		{%if tag_items%}
+			<a name='{{tag_name|title}}'><span class='special_black'><h3 class='special_black' style='background:transparent url(/site_media/img/nonselected_restaurant_2x35.png) repeat-x scroll 0 0;height:1.2em;margin-top:1em;margin-bottom:0;'>{{tag_name|title}}</h3></span></a>
+			{%for item in tag_items%}
+				<div id='item-{{item.item.alias}}' class='restaurant_menuitem' onClick='javascript:add_to_cart("{{item.id}}","{{item.item.name}}","{{item.cost}}");return false;'>
+					<div class='menuitem_name'>{{item.item.name}}</div>
+					<div class='menuitem_cost'>{{item.cost}}</div>
+					<div style='clear:both;width:0%;height:0%;'></div>
+				</div>
+			{%endfor%}
+			<a class='special_red_link' href='#top'>Take me to Top</a>
+		{%endif%}
+	{%endfor%}
+{%else%}
+	<div class='notice'>
+		Restaurant Housefull :D
+	</div>
+{%endif%}

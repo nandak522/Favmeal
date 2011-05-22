@@ -1,0 +1,21 @@
+{%extends "globals/singlepane_base.html"%}
+{%block title%}Your Dashboard - FavMeal{%endblock%}
+{%block googlemaps%}
+<script type='text/javascript' src='http://maps.google.com/maps?file=api&amp;v=2&amp;key={{googlemaps_api_key}}'></script>
+{%endblock%}
+{%block content%}
+<div class='static_page_header special' style='text-align:center;'>
+	Route Global Dashboard
+</div><!-- end of static_page_header -->
+<br/>
+<div id='routedashboard' class='column span-20 push-2'>
+	{%load tracks_tags%}
+	{%renderallroutes%}
+</div><!-- end of routedashboard -->
+{%endblock%}
+{%block onload%}
+initialize()
+{%endblock%}
+{%block onunload%}
+GUnload()
+{%endblock%}

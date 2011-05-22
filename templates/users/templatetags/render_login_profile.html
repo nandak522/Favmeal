@@ -1,0 +1,57 @@
+{%if logged_in%}
+	<span class='salutation'>Hi {{user.email}}! &nbsp; &nbsp; &nbsp;</span><a class='speciallink' style='color:#CD0000;' href='/logout/'>Logout</a>
+{%else%}
+	<script type='text/javascript'>
+	function register(){
+		document.location.href='{%url register%}';
+	}
+	function login(){
+		$('#loginform').submit();
+	}
+	</script>
+		<br/>
+		<form action='/login/' method='POST' id='loginform'>
+			<table summary='login_form'>
+					<tr align='left' class='field'>
+						<td align='center' class='field_label'>
+							<label for='id_lusername'><span>Email</span></label>
+							<br/>
+							{{login_form.lusername}}<span class='table_textfield_help_text' style='color:#CD0000;font-family:sans-serif;'>(required)</span>
+						</td>
+						<td align='left'>{{login_form.lusername.errors}}</td>
+					</tr>
+					<tr align='left' class='field'>
+						<td align='center' class='field_label'>
+							<label for='id_lpassword'><span>Password</span></label>
+							<br/>
+							{{login_form.lpassword}}<span class='table_textfield_help_text' style='color:#CD0000;font-family:sans-serif;'>(required)</span>
+						</td>
+						<td align='left'>{{login_form.lpassword.errors}}</td>
+					</tr>
+					<tr align='left' class='field'>
+						<td align='center' class='field_label'>
+							<span style='font-weight:bold;font-size:10pt;color:#3C3B3B;'>
+								I agree to the <a href='/terms/' style='color:#3C3B3B;'>Terms</a>
+							</span>
+						</td>
+						<td align='left'>&nbsp;</td>
+					</tr>
+					<tr align='left' class='field'>
+						<td align='center' class='field_label'>
+							<a onClick='javascript:login();' style='cursor:pointer;'>
+								<img alt='Click here to SignIn' src='/site_media/img/login.png' style='border:0px;'/>
+							</a>
+						</td>
+						<td align='left'>&nbsp;</td>
+					</tr>
+			</table>			
+		</form>
+		<hr style='width:80%;border:1px solid #CD0000;'/>
+		<br/>
+		<div id='signup_block' style='margin:0 auto;text-align:center;'>
+			<span style='font-weight:bold;font-size:12pt;color:#3C3B3B;'>Not a member of Favmeal.com ? </span>
+			<a href='{%url register%}' style='text-decoration:none;cursor:pointer;'>
+				<img alt='Click here to SignUp' src='/site_media/img/acc_create.png' style='border:0px;'/>
+			</a>
+		</div>
+{%endif%}

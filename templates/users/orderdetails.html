@@ -1,0 +1,69 @@
+{%extends 'globals/singlepane_base.html'%}
+{%block title%}Order:{{order.code}} - FavMeal{%endblock%}
+{%block content%}
+{%if order%}
+	{%load restaurants_tags%}
+	<div id='orderdetails' class='span-20 push-2'>
+		<fieldset>
+			<legend>Order Information</legend>
+			<table style='font:bold 1.2em Arial,sans-serif;'>
+				<tr class='tableheader'>
+					<td>Order Code</td>
+					<td>Delivery Time</td>
+					<td>Items</td>
+					<td>Restaurant</td>
+					<td>Cost</td>
+					<!-- 
+					<td>Status</td>
+					 -->
+				</tr>
+				<tr>
+					<td>{{order.code}}</td>
+					<td>{{order.deliverytime|date:"f A jS N"}}</td>
+					<td>{%renderorderedmenuitems order.items%}</td>
+					<td>{{order.get_restaurant.name}}</td>
+					<td>{{order.totalcost}}</td>
+					<!-- 
+					<td>
+						{%ifequal order.status '0'%}
+							Yet to Start
+						{%else%}
+							{%ifequal order.status '1'%}
+								Under Process
+							{%else%}
+								{%ifequal order.status '2'%}
+									Done
+								{%endifequal%}
+							{%endifequal%}
+						{%endifequal%}
+					</td>
+					 -->
+				</tr>
+			</table>
+		</fieldset>
+		<hr class='special_red'/>
+		<fieldset>
+			<legend>Person Information</legend>
+			<table class='span-10'>
+				<tr>
+					<td class='address_label'>Email</td><td class='address_value'>:&nbsp;&nbsp;{{userprofile.email}}</td>
+				</tr>
+				<tr>
+					<td class='address_label'>Mobile</td><td class='address_value'>:&nbsp;&nbsp;{{userprofile.mobile}}</td>
+				</tr>
+				<tr>
+					<td class='address_label special_red'>Company Name/Building</td><td class='address_value' style='font-weight:bold;color:#666;'>:&nbsp;&nbsp;{{userprofile.destination.place}}</td>
+				</tr>
+				<tr>
+					<td class='address_label special_red'>Landmark</td><td class='address_value' style='font-weight:bold;color:#666;'>:&nbsp;&nbsp;{{userprofile.destination.landmark}}</td>
+				</tr>
+				<tr>
+					<td class='address_label special_red'>Steet/Colony/Junction</td><td class='address_value' style='font-weight:bold;color:#666;'>:&nbsp;&nbsp;{{userprofile.destination.area}}</td>
+				</tr>
+			</table>
+		</fieldset>
+	</div><!-- end of orderdetails -->
+{%else%}
+	<h3 class='special_red'>Did find the order you are looking for. Please Try again</h3>
+{%endif%}
+{%endblock%}

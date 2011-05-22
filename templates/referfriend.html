@@ -1,0 +1,32 @@
+{%extends "globals/singlepane_base.html"%}
+{%block title%}Refer Your Friend(s) - Favmeal{%endblock%}
+{%block googlemaps%}
+{%endblock%}
+{%block content%}
+<div class='static_page_header special' style='text-align:center'>Make your friends know about Favmeal. Invite them.</div>
+<div id='referfriend_form' class='span-18 push-7'>	
+    <form method='post' action='{%url referfriend%}'>
+        <table>
+            <tr>
+                <td><label for='id_name'>Your Name:</label><br/>{{form.name}}<br/>{{form.name.errors}}</td>
+            </tr>
+            <tr>
+                <td><label for='id_email'>Your Email: </label><span class='special_red'>(required)</span><br/>{{form.email}}<br/>{{form.email.errors}}</td>
+            </tr>
+            <tr valign='top' align='left'>
+                <td>
+                    <label for='id_ref_emails'>Friends Email(s):</label><span class='special_red'>(required)</span> Use comma to separate multiple email addresses<br/>{{form.ref_emails}}<br/>{{form.ref_emails.errors}}</textarea>
+                </td>
+            </tr>
+            <tr valign='top' align='left'>
+                <td>
+                    <label for='id_ref_mobiles'>Friends Mobile(s):</label><span class='special_red'>(required)</span> Use comma to separate multiple mobile numbers<br/>{{form.ref_mobiles}}<br/>{{form.ref_mobiles.errors}}</textarea>
+                </td>
+            </tr>
+        </table>
+        <input tabindex="5" type='Submit' value='Refer My Friends' name='button'/>
+    </form>
+</div><!-- end of referfriend_form -->
+<div id='empty_div' class='span-24 last' style='height:2em;'>
+</div><!-- end of empty_div -->
+{%endblock%}

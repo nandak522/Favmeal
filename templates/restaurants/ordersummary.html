@@ -1,0 +1,23 @@
+{%extends 'globals/singlepane_base.html'%}
+{%block content%}
+	{%if order%}
+		<div id='ordersummary' class='span-18 push-2 last' style='border:1px solid #CCC;padding:1.5em;'>
+			{%ifequal order.status 2%}
+				<h3 class='special_red'>Your order has been successfully executed! Want to write us your feedback? Please <a target='_blank' href='/contactus/'>write here</a>.</h3>
+			{%else%}
+				<h3 class='special_red'>Congrats! You have successfully placed the order through Favmeal.com</h3>
+				<ul>
+					<li class='ordersummary_info'>Your Net Amount to be paid is Rs.<span class='special_red'>{{order.totalcost}}</span>.</li>
+					<li class='ordersummary_info'>You would get ordered food with-in stipulated time, and thats <span class='special_red'>{{order.deliverytime|date:"f A"}}</span>.</li>
+					<li class='ordersummary_info'>The food ordered online would not be cancelled.</li>
+					<li class='ordersummary_info'>The order placed will be reverted/cancelled if the restaurant is off today due to some causes.</li>
+					<!-- <li class='ordersummary_info'>An email would be sent to you with the order details. Please check your email inbox</li> -->
+				</ul>
+				<h3 class='special_red'>Thankyou and Visit Us Again</h3>
+				<h4 class='special_black'>If you want to check the status of your order readily, <a class='special_red_link' href='/myorders/'>Click Here</a></h4>
+			{%endifequal%}
+		</div>
+	{%else%}
+		<h3 class='special_red'>Order Not Found</h3>
+	{%endif%}
+{%endblock%}

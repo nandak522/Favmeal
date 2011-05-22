@@ -1,0 +1,42 @@
+<div id='location_marker_{{location_type}}' style='cursor:crosshair;height:200px;'>
+</div><!-- end of location_marker -->
+<form id='savelocationform_{{location_type}}'>
+	<input type='hidden' value='{{location_type}}' id='location_type' name='location_type' />
+	<input type='hidden' value='' id='latitude' name='latitude' />
+	<input type='hidden' value='' id='longitude' name='longitude' />
+</form>
+<div id='location_saving_status_{{location_type}}' style='display:none;'></div>
+<script type="text/javascript">
+var location_marker_map = new GMap2(document.getElementById('location_marker_{{location_type}}'),{draggableCursor:"crosshair"});
+location_marker_map.setCenter(new GLatLng(17.4253, 78.4733),10);
+location_marker_map.enableDoubleClickZoom();
+location_marker_map.enableScrollWheelZoom();
+location_marker_map.addControl(new GLargeMapControl());
+location_type = "{{location_type}}";
+geoCenter_latlng = location_marker_map.getCenter();
+GEvent.addListener(location_marker_map,"click",location_picker);
+function location_picker(marker,point){
+	return location_saver(location_type,point.lat(),point.lng());
+}
+function location_saver(location_type,latitude,longitude){
+	document.getElementById("location_type").value = location_type;
+	document.getElementById("latitude").value = latitude;
+	document.getElementById("longitude").value = longitude;
+	var options = {
+		url:'/savelocation/',
+		beforeSubmit:function(){
+			$('#location_saving_status_{{location_type}}').show();
+			$('#location_saving_status_{{location_type}}').get(0).value='Saving Location...';
+		},
+		success:function(html){
+			$('#location_saving_status_{{location_type}}').show();
+			$('#location_saving_status_{{location_type}}').get(0).value='Saved Location Successfully';
+		},
+		failure:function(html){
+			$('#location_saving_status_{{location_type}}').show();
+			$('#location_saving_status_{{location_type}}').get(0).value='Saving Location Failed...';
+		}
+	};
+	$('#savelocationform_{{location_type}}').ajaxSubmit(options);
+}
+</script>

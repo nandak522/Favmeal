@@ -1,0 +1,23 @@
+<!-- Messages -->
+{%for message in errormessages%}
+	<div class='error'>
+	{%autoescape off%}
+	{{message}}
+	{%endautoescape%}
+	</div>
+{%endfor%}
+{%for message in remindermessages%}
+	<div class='notice'>
+	{%autoescape off%}
+	{{message}}
+	{%endautoescape%}
+	</div>
+{%endfor%}
+{%for message in informativemessages%}
+	<div class='success'>
+	{%autoescape off%}
+	{{message}}
+	{%endautoescape%}
+	</div>
+{%endfor%}
+<!-- END of Messages -->

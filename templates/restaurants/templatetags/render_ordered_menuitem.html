@@ -1,0 +1,9 @@
+{%if items%}
+	<ul>
+	{%for menuitem_dict in items%}
+		<li style='line-height:20px;'>{{menuitem_dict.item.item.name|capfirst}}<span class='special_blue'>({{menuitem_dict.quantity}})</span></li>
+	{%endfor%}
+	</ul>
+{%else%}
+	No Items Found
+{%endif%}

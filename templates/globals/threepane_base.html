@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta name="verify-v1" content="odQaZ1XFPaNDW8H9VwrL60cEb7OZ3GDKtBFrd/RYoMQ=" />
+<title>{%block title%}Favmeal = Good Food + Right Price + On Time + Every Day{%endblock%}</title>
+{%block css%}
+<link rel="stylesheet" type="text/css" media="screen,projection" href="/site_media/css/blueprint/screen.css" />
+<link rel="stylesheet" type="text/css" media="print" href="/site_media/css/blueprint/print.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/site_media/css/master.css" />
+<!--[if IE]><link rel="stylesheet" href="/site_media/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+{%endblock%}
+<link rel='shortcut icon' href="/site_media/img/favicon.png"/>
+{%block extracss%}
+{%endblock%}
+</head>
+<body onload='{%block onload%}{%endblock%}' onunload='{%block onunload%}{%endblock%}'>
+{%block disablebackground%}
+{%endblock%}
+<div class='container bodybackground' style='border:1px solid #CCC;'>
+	<div id='header' class='column span-24'>
+		{%block header%}
+			{%include 'globals/header.html'%}
+			<div id='tabs' class='column span-24' style='padding-top:6px;padding-bottom:4px;'>
+				{%include 'globals/tabs.html'%}
+			</div><!-- end of tabs -->
+		{%endblock%}
+	</div>
+	<div id='content' class='column span-24'>
+		<br/>
+		{%block announcement%}
+		{%endblock%}
+		<div id='leftbar' class='column span-5'>
+			{%block leftbar%}
+			{%endblock%}
+		</div><!-- end of leftbar -->
+		<div id='main-content' class='column span-12'>
+			{%load user_tags%}
+			{%messages%}
+			{%block main-content%}
+			{%endblock%}
+		</div><!-- end of main-content -->
+		<div id='rightbar' class='column span-6 last'>
+			{%block rightbar%}
+			{%endblock%}
+		</div><!-- end of rightbar -->
+	</div><!-- end of content -->
+	<div id='footer' class='column span-24'>
+		{%block footer%}
+			{%include 'globals/footer.html'%}
+		{%endblock%}
+	</div><!-- end of footer -->
+	{%block js%}
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+		google.load("jquery", "1.3.1");
+		google.setOnLoadCallback(function() {
+		// Place init code here instead of $(document).ready()
+		});
+	</script>
+	{%endblock%}
+	{%block extrajs%}
+	{%endblock%}
+</div>
+</body>
+</html>

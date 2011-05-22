@@ -1,0 +1,116 @@
+{%extends "globals/singlepane_base.html"%}
+{%block title%}Register for HomeFood Delivery - FavMeal{%endblock%}
+{%block announcement%}
+{%endblock%}
+{%block content%}
+	<div id='main_bar' class='span-20 push-2'>
+		<div id='main_icon' class='span-4'>
+			<img src="/site_media/img/homefood_160x160.png"/>
+		</div><!-- end of main_icon -->
+		<div id='main_bullets' class='span-10 push-1'>
+			<h2 class='special_red' style='margin-bottom:0.25em;'>Home Food - Delivery</h2>
+			<ul>
+				<li class='service_line'>Get Your HomeFood at your Office Desk</li>
+				<li class='service_line'>Rs <span class='special_red'>350</span>/- per month only</li>
+				<li class='service_line'>Lunch Time: 1:00 PM to 2.30 PM</li>
+				<li class='service_line'>Service starting <span class='special_red'>shortly</span></li>
+			</ul>
+		</div><!-- end of main_links -->
+		<div id='main_links' class='span-5 last'>
+			<div id='register' class='help_links'>
+				<span class='special_red'>Start Registering Now</span>
+			</div><!-- end of register -->
+			<div id='price' class='help_links'>
+				Rs.<span class='special_red'>350</span>/- per month only
+			</div><!-- end of register -->
+		</div><!-- end of main_links -->
+	</div><!-- end of main_bar -->
+	<div id='homefood_content' class='span-20 push-2'>
+		<h3 class='special_red' style='margin-bottom:0.25em;'>Important Notes</h3>
+		<ul>
+			<li class='service_line'>Customer office areas should be in either <span style='color:#105CB6;'>Hitech City, Gachibowli, Kondapur</span></li>
+			<li class='service_line'>Your office area and your residential area will only be picked up, if the customers count from the respective areas is considerable</li>
+		</ul>
+	</div><!-- end of homefood_content -->
+	<div id='homefood_registration' class='span-20 push-2'>
+		<h3 class='special_red' style='margin-bottom:0.25em;'>Register Here</h3>
+		<form id='homefoodregistrationform' action="{%url register%}" method='post'>
+			{{form.service_type}}
+			<table class='span-11'>
+				<tr>
+					<td><label for='id_remail'>Email:</label></td><td>{{form.remail}}<br/>{{form.remail.errors}}<span id='email_status_check'></span></td>
+				</tr>
+				<tr>
+					<td><label for='id_rpassword'>Password:</label></td><td>{{form.rpassword}}<br/>{{form.rpassword.errors}}</td>
+				</tr>
+				<tr>
+					<td><label for='id_mobile'>Mobile:</label></td><td>{{form.mobile}}<br/>{{form.mobile.errors}}</td>
+				</tr>
+				<tr>
+					<td>
+						<fieldset class='address'>
+							<legend>From(House) Address</legend>
+							<label for='id_home_place'>House Number or Mess Name</label><br/>
+							{{form.home_place}}{{form.home_place.errors}}<br/><br/>
+							<label for='id_home_landmark'>Landmark</label><br/>
+							{{form.home_landmark}}{{form.home_landmark.errors}}<br/><br/>
+							<label for='id_home_area'>Street/Colony/Junction</label><br/>
+							{{form.home_area}}{{form.home_area.errors}}<br/><br/>
+							<label for='id_home_zip'>Zip</label><br/>
+							{{form.home_zip}}{{form.home_zip.errors}}							
+						</fieldset>
+					</td>
+					<td>
+						<fieldset class='address'>
+							<legend>To(Office) Address</legend>
+							<label for='id_office_place'>Company Name/Building:</label><br/>
+							{{form.office_place}}{{form.office_place.errors}}<br/><br/>
+							<label for='id_office_landmark'>Landmark</label><br/>
+							{{form.office_landmark}}{{form.office_landmark.errors}}<br/><br/>
+							<label for='id_office_area'>Street/Colony/Junction</label><br/>
+							{{form.office_area}}{{form.office_area.errors}}<br/><br/>
+							<label id='other_area_label' style='{%if not form.office_other_area.errors%}display:none;{%endif%}' for='id_office_other_area'>Other Street/Colony/Junction</label><br/>
+							{{form.office_other_area}}{{form.office_other_area.errors}}<br/>
+							<label for='id_office_zip'>Zip</label><br/>
+							{{form.office_zip}}{{form.office_zip.errors}}
+						</fieldset>
+					</td>
+				</tr>
+			</table>
+			<input type='submit' tabindex="14" value='Register' name='Submit'/>
+		</form>
+	</div><!-- end of homefood_registration -->
+{%endblock%}
+{%block extrajs%}
+<script type='text/javascript' src='/site_media/js/jquery/jquery.form.js'></script>
+<script type='text/javascript'>
+function check_email_exists(){
+	var options = {
+		url:'/checkemail/',
+		beforeSubmit:function(){
+			$('#email_status_check').show();
+			document.getElementById('email_status_check').innerHTML = '<img alt="loading.." style="margin-top:4px;width:20px;height:20px;" src="/site_media/img/ajax-loader.gif"/>';
+		},
+		success:function(html){
+			$('#email_status_check').show();
+			document.getElementById('email_status_check').innerHTML = html;
+		}
+	};
+	$('#homefoodregistrationform').ajaxSubmit(options);
+}
+function register_user(){
+	$('#homefoodregistrationform').submit();
+}
+function show_other_area(){
+	index = $('#id_office_area').get(0).selectedIndex;
+	if($('#id_office_area').get(0).options[index].value == '-1'){
+		$('#other_area_label').show();
+		$('#id_office_other_area').show();
+		$('#id_office_other_area').focus();
+	}else{
+		$('#other_area_label').hide();
+		$('#id_office_other_area').hide();
+	}
+}
+</script>
+{%endblock%}

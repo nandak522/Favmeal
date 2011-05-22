@@ -1,0 +1,35 @@
+ <div id='account_info'>
+	<div id='account_info_header'>Personal Information</div>
+	<table>
+		<tr>
+			<td><label for='id_password'>Password</label><br/>{{accountform.password}}</td>
+		</tr>
+		<tr>
+			<td><label for='id_mobile'>Mobile</label><br/>{{accountform.mobile}}</td>
+		</tr>
+	</table>
+	<div id='account_info_header'>Address Information</div>
+	<table>
+		<tr>
+			<td>
+				<fieldset class='address span-5' style='height:18em;'>
+					<legend>Mess</legend>
+					<span style='font:bold 1.4em Arial,sans-serif;'>Once the service starts, Your subscribed Mess will be shown here</span>
+				</fieldset>
+			</td>
+			<td>
+				<fieldset class='address' style='height:18em;'>
+					<legend>To(Office) Address</legend>
+					<label for='id_office_place'>Company Name/Building{%if accountform.fields.office_place.required%}&nbsp;<span class='required'>(required)</span>{%endif%}</label><br/>
+					{{accountform.office_place}}{{accountform.office_place.errors}}<br/><br/>
+					<label for='id_office_landmark'>Landmark{%if accountform.fields.office_landmark.required%}&nbsp;<span class='required'>(required)</span>{%endif%}</label><br/>
+					{{accountform.office_landmark}}{{accountform.office_landmark.errors}}<br/><br/>
+					<label for='id_office_area'>Street/Colony/Junction{%if accountform.fields.office_area.required%}&nbsp;<span class='required'>(required)</span>{%endif%}</label><br/>
+					{{accountform.office_area}}{{accountform.office_area.errors}}<br/><br/>
+					<label for='id_office_zip'>Zip</label><br/>
+					{{accountform.office_zip}}{{accountform.office_zip.errors}}
+				</fieldset>
+			</td>
+		</tr>
+	</table>	
+</div><!-- end of account_info -->

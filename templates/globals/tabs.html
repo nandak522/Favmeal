@@ -1,0 +1,16 @@
+<ul>
+	<li class="{%ifequal selected_maintab 'home'%}selected_maintab{%else%}nonselected_maintab{%endifequal%}"><a href='/'>Home</a></li>
+	<li class="{%ifequal selected_maintab 'homefood'%}selected_maintab{%else%}nonselected_maintab{%endifequal%}"><a href='{%url homefood%}'>Home-Food</a></li>
+	<li class="{%ifequal selected_maintab 'restaurantfood'%}selected_maintab{%else%}nonselected_maintab{%endifequal%}"><a href='{%url restaurantfood%}'>Restaurant-Food</a></li>
+	<li class="{%ifequal selected_maintab 'messfood'%}selected_maintab{%else%}nonselected_maintab{%endifequal%}"><a href='{%url messfood%}'>Mess-Food</a></li>
+	<li class="{%ifequal selected_maintab 'contactus'%}selected_maintab{%else%}nonselected_maintab{%endifequal%}"><a href='/contactus/'>Contact Us</a></li>
+	{% load user_tags %}
+	{%if user.is_authenticated%}
+	<li class="{%ifequal selected_maintab 'myorders'%}selected_maintab{%else%}nonselected_maintab{%endifequal%}"><a href='{%url myorders%}'>My Orders</a></li>
+	<li class="{%ifequal selected_maintab 'account'%}selected_maintab{%else%}nonselected_maintab{%endifequal%}"><a href='{%url account%}'>Account</a></li>
+	<li class='nonselected_maintab'><a href='{%url logout%}'>Logout</a></li>
+	{%else%}
+	<li class="nonselected_maintab"><a href='/invite/'>Refer Friend<span class='special_yellow'>**</span></a></li>
+	<li class="{%ifequal selected_maintab 'login'%}selected_maintab{%else%}nonselected_maintab{%endifequal%}"><a href='{%url login%}'>Login</a></li>
+	{%endif%}
+</ul>

@@ -1,0 +1,11 @@
+{%extends "globals/singlepane_base.html"%}
+{%block title%}Your Dashboard - FavMeal{%endblock%}
+{%block content%}
+<div style='text-align:center;'>
+	<div class='static_page_header special'><a class='special_red_link' href='{%url allusers%}'>All Registrations</a></div>
+	<div class='static_page_header special'><a class='special_red_link' href='{%url allorders%}'>All Orders</a></div>
+	<div class='static_page_header special'><a class='special_red_link' href='{%url routesdashboard%}'>Route Dashboard</a></div>
+	<br/>
+	<br/>
+</div><!-- end of static_page_header -->
+{%endblock%}

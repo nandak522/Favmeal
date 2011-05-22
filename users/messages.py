@@ -1,0 +1,7 @@
+ICON_CROSS = '<img alt="X" src="/site_media/img/icon_deletelink.gif"/>'
+ICON_SUCESS = '<img alt="Success" src="/site_media/img/icon_success.gif"/>'
+INVALID_EMAIL_ADDRESS_ERROR_MESSAGE = '<span style="color:#FF0000;font-size:10pt;">Please Enter Valid Email :(</span>'
+EMAIL_ADDRESS_ALREADY_TAKEN_ERROR_MESSAGE = '<span style="color:#FF0000;font-size:10pt;">Email Address Already Taken</span>'
+VALID_EMAIL_ADDRESS_MESSAGE = '<span style="color:#14A222;font-size:10pt;">Proceed :)</span>'
+INVALID_LOGIN_INFO = 'Invalid Username and/or Password'
+PASSWORD_RESET_EMAIL_SUCCESS = 'Your password has been reset and has been emailed at %s.<br/> Please check the mail Inbox and also Spam incase you didn\'t see the mail in your inbox.<br/> Thankyou'

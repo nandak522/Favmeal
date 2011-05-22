@@ -1,0 +1,50 @@
+{%extends "globals/singlepane_base.html"%}
+{%block title%}Contact Us - Favmeal{%endblock%}
+{%block googlemaps%}
+{%endblock%}
+{%block content%}
+<div class='static_page_header special'>Contact Us</div>
+<div id='contactus_address' class='static_page_content span-10'>
+	<table class='span-6 last'>
+		<tr>
+			<td class='underline_tablecell'>Phone: </td>
+			<td class='underline_tablecell'>040-32577666</td>
+		</tr>
+		<tr>
+			<td class='underline_tablecell'>Email: </td>
+			<td class='underline_tablecell'>contact@favmeal.com</td>
+		</tr>
+		<tr>
+			<td class='underline_tablecell'>Address: </td>
+			<td class='underline_tablecell'>
+					Flat #274, 275<br/>
+					Sri Swami Ayyappa Housing Society,<br/>
+					Khana Mitta,<br/>
+					Madhapur,<br/>
+					Hyderabad - 81
+			</td>
+		</tr>
+	</table>
+</div><!-- end of contactus_address -->
+<div id='contactus_queryform' class='span-12 last' style='margin-top:-1em;padding:1em;border:1px solid #CCC;'>
+	<div id='static_page_header' class='special' style='font-size:1.6em;'>Any Queries/Suggestions? Write to Us</div>
+	<form method='post' action='{% url contactus%}'>
+		<table>
+			<tr>
+				<td><label for='id_email'>Your Email:</label><span class='special_red'>(required)</span><br/>{{form.email}}<br/>{{form.email.errors}}</td>
+			</tr>
+			<tr>
+				<td><label for='id_name'>Your Name:</label><span class='special_black'>(optional)</span><br/>{{form.name}}<br/>{{form.name.errors}}</td>
+			</tr>
+			<tr valign='top' align='left'>
+				<td>
+					<label for='id_query'>Query:</label><span class='special_red'>(required)</span>Maximum of 1000 Characters<br/>{{form.query}}<br/>{{form.query.errors}}</textarea>
+				</td>
+			</tr>
+		</table>
+		<input tabindex="4" type='submit' value='Post Query' name='submit'/>
+	</form>
+</div><!-- end of contactus_queryform -->
+<div id='empty_div' class='span-24 last' style='height:2em;'>
+</div><!-- end of empty_div -->
+{%endblock%}

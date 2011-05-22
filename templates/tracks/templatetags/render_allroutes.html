@@ -1,0 +1,26 @@
+<script type='text/javascript'>
+function stick_marker(map,name,latitude,longitude,flag){
+	var marker = new GMarker(new GLatLng(latitude,longitude));;
+	GEvent.addListener(marker,'click',function(){marker.openInfoWindowHtml(name);});
+	GEvent.addListener(marker,"mouseover", function() {marker.openInfoWindowHtml(name);});
+	map.addOverlay(marker);
+}
+function initialize() {
+	map = new GMap2(document.getElementById('map'),{draggableCursor:"crosshair"});
+	map.setCenter(new GLatLng(17.40863,78.47225), 12);/*Secretariat*/
+	map.enableScrollWheelZoom();
+	map.addControl(new GLargeMapControl());
+    map.addControl(new GMapTypeControl(1));
+	{%if routes%}
+		{%for route in routes%}
+			{%for halt in route.halts.all%}
+				stick_marker(map,"{{halt.name}}","{{halt.latitude}}","{{halt.longitude}}",'default');
+			{%endfor%}
+		{%endfor%}
+	{%else%}
+		alert('Route Updating Process in Progress. Please stay for a while. Refresh the page after 2 mins');
+	{%endif%}
+}
+</script>
+<div id='map' style='-moz-box-sizing:padding-box;-moz-outline-radius-bottomleft:20px;-moz-outline-radius-bottomright:20px;-moz-outline-radius-topleft:20px;-moz-outline-radius-topright:20px;outline-color:#CCC;outline-style:solid;outline-width:10px;'>
+</div><!-- end of map -->

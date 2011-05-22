@@ -1,0 +1,16 @@
+{%extends "globals/singlepane_base.html"%}
+{%block title%}Account Information - FavMeal{%endblock%}
+{%block content%}
+<form action='{%url account%}' method='post'>
+	{%ifequal user.get_profile.get_service_type 'homefood'%}
+		{{accountform.render_homefood_accountform}}
+	{%endifequal%}
+	{%ifequal user.get_profile.get_service_type 'restaurantfood'%}
+		{{accountform.render_restaurantfood_accountform}}
+	{%endifequal%}
+	{%ifequal user.get_profile.get_service_type 'messfood'%}
+		{{accountform.render_messfood_accountform}}
+	{%endifequal%}
+	<input type='submit' value='Save Changes' name='submit' style='margin-left:1em;margin-top:-1.5em;'/>
+</form>
+{%endblock%}

@@ -1,0 +1,171 @@
+var Mint = new Object();
+Mint.save = function() 
+{
+	var now		= new Date();
+	var debug	= false; // this is set by php 
+	if (window.location.hash == '#Mint:Debug') { debug = true; };
+	var path	= 'http://kelvinluck.com/mint/?record' + ((debug)?'&debug&errors':'') + '&key=333037447356683754386144793432726c303231';
+	
+	// Loop through the different plug-ins to assemble the query string
+	for (var developer in this) 
+	{
+		for (var plugin in this[developer]) 
+		{
+			if (this[developer][plugin] && this[developer][plugin].onsave) 
+			{
+				path += this[developer][plugin].onsave();
+			};
+		};
+	};
+	// Slap the current time on there to prevent caching on subsequent page views in a few browsers
+	path += '&'+now.getTime();
+	
+	// Redirect to the debug page
+	if (debug) { window.location.href = path; return; };
+	
+	if (document.write) { document.write('<img src="'+path+'" alt="" style="position: absolute; left: -9999px;" onload="this.parentNode.removeChild(this);" />'); }
+	else
+	{
+		// Record this visit; uses XMLHttpRequest to play nice with pages served as application/xhtml+xml
+		// Causes a security issue when served from a sub or other domain
+		var data = false;
+		/*@cc_on @*/
+		/*@if (@_jscript_version >= 5)
+		try { data = new ActiveXObject("Msxml2.XMLHTTP"); } 
+		catch (e) { try { data = new ActiveXObject("Microsoft.XMLHTTP"); } catch (E) { data = false; } }
+		@end @*/
+		if (!data && typeof XMLHttpRequest!='undefined') { data = new XMLHttpRequest(); }
+		if (data) { data.open("GET", path, true); data.send(null); }
+	};
+};
+if (!Mint.SI) { Mint.SI = new Object(); }
+Mint.SI.Referrer = 
+{
+	onsave	: function() 
+	{
+		var encoded = 0;
+		if (typeof Mint_SI_DocumentTitle == 'undefined') { Mint_SI_DocumentTitle = document.title; }
+		else { encoded = 1; };
+		var referer		= (window.decodeURI)?window.decodeURI(document.referrer):document.referrer;
+		var resource	= (window.decodeURI)?window.decodeURI(document.URL):document.URL;
+		return '&referer=' + escape(referer) + '&resource=' + escape(resource) + '&resource_title=' + escape(Mint_SI_DocumentTitle) + '&resource_title_encoded=' + encoded;
+	}
+};
+if (!Mint.SI) { Mint.SI = new Object(); }
+Mint.SI.UserAgent007 = 
+{
+	flashVersion		: 0,
+	resolution			: '0x0',
+	detectFlashVersion	: function () 
+	{
+		var m =16;
+		var ua = navigator.userAgent.toLowerCase();
+		if (navigator.plugins && navigator.plugins.length) 
+		{
+			var p = navigator.plugins['Shockwave Flash'];
+			if (typeof p == 'object') 
+			{
+				for (var i=m;i>=3;i--) 
+				{
+					if (p.description && p.description.indexOf(' ' + i + '.') != -1) { this.flashVersion = i; break; }
+				}
+			}
+		}
+		else if (ua.indexOf("msie") != -1 && ua.indexOf("win")!=-1 && parseInt(navigator.appVersion) >= 4 && ua.indexOf("16bit")==-1) 
+		{
+			var vb = '<scr' + 'ipt language="VBScript"\> \nOn Error Resume Next \nDim obFlash \nFor i = ' + m + ' To 3 Step -1 \n   Set obFlash = CreateObject("ShockwaveFlash.ShockwaveFlash." & i) \n   If IsObject(obFlash) Then \n      Mint.SI.UserAgent007.flashVersion = i \n      Exit For \n   End If \nNext \n<'+'/scr' + 'ipt\> \n';
+			document.write(vb);
+		}
+		else if (ua.indexOf("webtv/2.5") != -1) this.flashVersion = 3;
+		else if (ua.indexOf("webtv") != -1) this.flashVersion = 2;
+		return this.flashVersion;
+	},
+	onsave				: function() 
+	{
+		this.resolution = screen.width+'x'+screen.height;
+		return '&resolution=' + this.resolution + '&flash_version=' + this.flashVersion;
+	}
+};
+Mint.SI.UserAgent007.detectFlashVersion();
+if(!Mint.RHC3) Mint.RHC3 = new Object();
+
+Mint.RHC3.SessionTracker = {
+	acceptscookies : 0,
+	onsave : function() {
+		var st_key = 'no';
+		this.setcookie('eatscookies','yes');
+		cookiecheck = this.getcookie('eatscookies');
+		return '&eatscookies='+cookiecheck;
+	},
+	getcookie : function(cookiename){
+		var thecookie = document.cookie;
+		var crumbs = thecookie.split(';');
+		for(var i=0;i<crumbs.length;i++){
+			chips = crumbs[i].split('=');
+			chips[0] = chips[0].replace(/^\s*|\s*$/g,'');
+			if(chips[0] == cookiename){
+				return chips[1];
+			}
+		}
+		return 'no';
+	},
+	setcookie : function(cookiename, cookievalue){
+		var sitedom = ".kelvinluck.com";
+		document.cookie = cookiename+'='+cookievalue+';domain='+sitedom+';';
+	}
+};
+
+
+var ol_extensions = 'zip,pdf,rar,mpg,mp3,mov,jpg,gif,css,js,as,patch';
+var ol_download_script = 'http://kelvinluck.com/mint/pepper/orderedlist/downloads/download.php';
+
+var is_download = 0;
+
+function getExtension(value) {
+  return value.substring(value.lastIndexOf('.') + 1,value.length);
+}
+
+function isdefined( variable) {
+    return (typeof(window[variable]) == "undefined")?  false: true;
+}
+
+function ol_get_domain(str) {
+	if (str.substr(0,7) == 'http://') str = str.substr(7);
+	if (str.substr(0,8) == 'https://') str = str.substr(8);
+	str = str.substr(0,str.indexOf('/'));
+	str = str.replace('www.','');
+	return str;
+}
+
+if (!isdefined('addLoadEvent')) {
+	function addLoadEvent(func) {
+		var oldonload = window.onload;
+		if (typeof window.onload != 'function') {
+			window.onload = func;
+		} else {
+			window.onload = function() {
+				oldonload();
+				func();
+			}
+		}
+	}
+}
+
+function activateDownloads() {
+	ext_list = ol_extensions.split(',');
+	var e=document.getElementsByTagName("a");
+	for(var i=0;i<e.length;i++) {
+		for (var j = 0; j <ext_list.length; j++) {
+			if (getExtension(e[i].href) == ext_list[j]) {
+				if (ol_get_domain(e[i].href) == ol_get_domain(document.URL)) {
+						e[i].onMouseOver = function() { thelink = this.href; target = unescape(thelink.substr(thelink.indexOf('='))); window.status = 'Download: ' + target; }
+						e[i].onMouseOut = function() { window.status = ''; } 
+						e[i].href = ol_download_script + '?file=' + escape(e[i].href);
+				}
+			}
+		}
+	}
+}
+
+addLoadEvent(activateDownloads);
+Mint.save();

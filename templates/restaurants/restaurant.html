@@ -1,0 +1,19 @@
+{%extends 'threepane_base.html'%}
+{%block extrajs%}
+<script type='text/javascript' src='/site_media/js/jquery/jquery.highlightfade.js'></script>
+{%endblock%}
+{%block threepane_left%}
+	{%include 'restaurants/restaurantslist_leftpane.html'%}
+{%endblock%}
+{%block threepane_center%}
+{%if not restaurant%}
+	Restaurant Not Found. Try looking for the restaurant in the <span style='cursor:pointer;text-decoration:underline;' onClick='javascript:$("#threepane_left").highlightFade();'>left sidebar</span>
+{%else%}
+	<div id='restaurant_header' style='background-color:#CD0000;padding:4px;color:#FFF;font-family:Monospace,Sans-serif,serif;font-size:12pt;font-weight:bold;'>{{restaurant.name|title}} Menu</div>
+	<div id='restaurant_menuitems'>
+	</div>
+{%endif%}
+{%endblock%}
+{%block threepane_right%}
+	{%include 'restaurants/restaurantsorder_rightpane.html'%}
+{%endblock%}

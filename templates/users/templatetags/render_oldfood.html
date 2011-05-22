@@ -1,0 +1,7 @@
+{%if userfoods%}
+	{%for userfood in userfoods%}
+		<div id='userfood_{{userfood.created_on.day}}_{{userfood.created_on.month}}_{{userfood.created_on.year}}' class='old_fooditems'>{{userfood.fooditem.name}} at {{userfood.created_on|date:"f A jS N Y"}}</div>
+	{%endfor%}
+{%else%}
+	You didn't save anything till now.
+{%endif%}

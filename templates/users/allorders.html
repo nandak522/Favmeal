@@ -1,0 +1,72 @@
+{%extends 'globals/singlepane_base.html'%}
+{%block title%}All Orders - FavMeal{%endblock%}
+{%block content%}
+<div id='allorders' class='span-24'>
+{%if userorders%}
+		{%load restaurants_tags%}
+		<table style='font:bold 1.1em Arial,sans-serif;'>
+			<tr class='tableheader'>
+				<td>Order Code</td>
+				<td>Delivery Time</td>
+				<td>Items</td>
+				<td>Restaurant</td>
+				<td>Cost</td>
+				<!-- <td>Status</td> -->
+				<td>Delete?</td>
+			</tr>
+			{%for order in userorders%}
+			<tr id='order_{{order.id}}' class={%cycle 'table_evenrow' 'table_oddrow'%}>
+				<td><a class='special_black_link' href='/orderdetails/?code={{order.code}}'>{{order.code}}</a></td>
+				<td>{{order.deliverytime|date:"f A jS N"}}</td>
+				<td style='width:40%;'>{%renderorderedmenuitems order.items%}</td>
+				<td>{{order.get_restaurant.name}}</td>
+				<td>{{order.totalcost}}</td>
+				<!-- 
+				<td>
+					{%ifequal order.status '0'%}
+						Yet to Start
+					{%else%}
+						{%ifequal order.status '1'%}
+							Under Process
+						{%else%}
+							{%ifequal order.status '2'%}
+								Done
+							{%endifequal%}
+						{%endifequal%}
+					{%endifequal%}
+				</td>
+				 -->
+				 <td><span id='delete_order_status_{{order.id}}'><a href='javascript:;' onClick='javascript:delete_order("{{order.id}}");return false;'><img alt='Delete Order' src='/media/img/admin/icon_deletelink.gif'/></a></span></td>
+			</tr>
+			{%endfor%}
+		</table>
+{%else%}
+	<h3 class='special_red'>There aren't any orders till now.</h3>
+{%endif%}
+</div><!-- end of myorders -->
+{%endblock%}
+{%block extrajs%}
+<script type='text/javascript'>
+function delete_order(order_id){
+	is_order_delete = confirm("You really want to delete the Order?");
+	if(is_order_delete){
+		$.ajax({
+				url:'{%url orderdelete%}',
+				data:'orderid='+order_id,
+				beforeSend:function(html){
+					$('#delete_order_status'+order_id).html('Deleting..<img alt="please wait..." style="margin-top:4px;width:20px;height:20px;" src="/site_media/img/ajax-loader.gif"/>');
+				},
+				success:function(html){
+							if(html == 'Order Deleted'){
+								$('#delete_order_status_'+order_id).html('Order Deleted');
+							}else if(html == 'Order Doesn\'t Exist'){
+								$('#delete_order_status'+order_id).html('<img alt="Error" style="margin-top:4px;width:20px;height:20px;" src="/media/img/admin/icon_alert.gif"/>');
+							}else if(html == 'Enter Order'){
+								alert("Invalid Operation. Try deleting again.");
+							}
+						},
+		});
+	}
+}
+</script>
+{%endblock%}

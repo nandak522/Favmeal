@@ -1,0 +1,86 @@
+{%extends "globals/singlepane_base.html"%}
+{%block title%}HomeFood-Delivery - FavMeal{%endblock%}
+{%block googlemaps%}
+{%endblock%}
+{%block content%}
+<div id='chart' class='column span-8 push-1'>
+	<div id='todays_food'>
+		<div class='homefood_header'>
+			<label>What are you having Today?</label>
+		</div><!-- end of header -->
+		<div class='homefood_content'>
+			<form name='todayfoodform' id='todayfoodform' method='POST'>
+				<input type='text' value='(E.g. Lemon Rice)' name='today_food' />
+				<input type='button' value='Save' name='button' onClick='javascript:save_todayfood();return false;' id='save_button'/>
+			</form>
+		</div><!-- end of content -->
+	</div><!-- end of todays_food -->
+	<br/>
+	<div id='foodchart'>
+		<div class='homefood_header'>Your Food Chart</div><!-- end of header -->
+		<div class='homefood_content'>
+			<div id='old_food'>
+				{%load user_tags%}
+				{%renderoldfood user%}
+			</div><!-- end of old_food -->
+		</div><!-- end of content -->
+		<br/>
+		<div id='health_tip'>
+			<div class='homefood_header'>Health Tip of the Day</div><!-- end of header -->
+			<div class='homefood_content'>
+				No HealthTips till now
+			</div><!-- end of content -->
+		</div><!-- end of health_tip -->
+	</div><!-- end of foodchart -->
+</div><!-- end of foodchart -->
+<div id='map_contact' class='column span-12 last push-1'>
+	<div class='static_page_header special' style='padding:0px;'>
+		Food Tracker
+	</div><!-- end of foodtracker -->
+	{%load user_tags%}
+	{%if googlemaps_api_key%}
+		<script type='text/javascript' src='http://maps.google.com/maps?file=api&amp;v=2&amp;key={{googlemaps_api_key}}'></script>
+		{%rendermap user%}
+	{%else%}
+		<div class='special_black' style='font:bold 1.4em Arial,sans-serif;'>Carrier Tracking Service starts <span class='special_red'>very soon</span>. Please be patient till then. Thank you.</div>
+	{%endif%}
+</div><!-- end of map_contact -->
+{%endblock%}
+{%block extrajs%}
+<script type='text/javascript' src='/site_media/js/jquery/jquery.form.js'></script>
+<script type='text/javascript'>
+function save_todayfood(){
+	var options = {
+		url:'/savetodaysfood/',
+		beforeSubmit:function(){
+			$('#save_button').get(0).value='Saving...';
+			$('#save_button').attr('disabled',true);
+		},
+		success:function(html){
+			$('#save_button').get(0).value='Saved';
+			$('#save_button').attr('disabled',false);
+			if($('#old_food').children().length != 0){
+				$('#old_food').prepend(html);
+			}else{
+				$('#old_food').html(html);
+			}
+		},
+		failure:function(html){
+			$('#save_button').get(0).value='Saving Failed. Try Again';
+			$('#save_button').attr('disabled',false);
+		}
+	};
+	$('#todayfoodform').ajaxSubmit(options);
+}
+</script> 
+{%endblock%}
+{%block onload%}
+	{%if googlemaps_api_key%}
+		initialize()
+	{%endif%}	
+{%endblock%}
+{%block onunload%}
+	{%if googlemaps_api_key%}
+		GUnload()
+	{%endif%}
+{%endblock%}

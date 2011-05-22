@@ -1,0 +1,115 @@
+/*Global Styles*/
+body{background:#F0F0F0;}
+.bodybackground{background:#FFF;}
+.errorlist{width:180px;margin:0;list-style-type:none;background:#FBE3E4;color:#8a1f11;border:1px solid #CD0000;padding:2px;}
+#header{ }
+#content{}
+#footer{ text-align:center; background: #FFF url(/site_media/img/footer_background.gif) repeat-x; }
+#footer span{ margin: 0 20px 0 0; color:#FFF; font:normal bold 10pt "Arial",sans-serif; }
+#footer span a{ color:#FFF; font:normal bold 10pt "Arial",sans-serif; text-decoration:none; }
+#footer span a:hover{ text-decoration:underline; }
+#static_page_header{font-size:2em;padding:10px 10px 0 10px;}
+.static_page_header{font-size:2em;padding:10px 10px 0 10px;}
+.static_page_content{padding:10px;font-size:1.6em;color:#666;}
+.special{color:#C00;}
+.special_red{color:#C00;}
+.special_black{color:#666;}
+.special_blue{color:#105CB6;}
+.special_black_link{color:#666;text-decoration:underline;}
+.special_blue_link{color:#105CB6;text-decoration:none;border-bottom:1px solid #105CB6;}
+.special_red_link{color:#CD0000;text-decoration:none;}
+.special_red_link:hover{color:#CD0000;border-bottom:1px solid #666;}
+.bold{font-weight:bold;}
+.quote{color:#C00;}
+.special_red{color:#CD0000;}
+.special_yellow{color:#FF0;}
+.success{background:#EFC;border:1px solid #AACC99;}
+input[type="text"],input[type="password"],textarea{border:1px solid #CCC;}
+input[type="text"]:hover,input[type="password"]:hover,textarea:hover{border:1px solid #666;}
+.height-1{height:1em;}
+.height-2{height:2em;}
+.height-3{height:3em;}
+#tabs{background: #CD0000 url(/site_media/img/itemcart_header_background.gif) repeat-x; }
+#tabs ul{ margin:0;}
+#tabs li{ display:inline; font:bold 1.1em Arial,sans-serif; padding:6px; cursor:pointer; margin-right:2em;}
+.selected_maintab{background: #CD0000 url(/site_media/img/tab_background_2x40.png) repeat-x;}
+.selected_maintab a{ text-decoration:none; color:#666; }
+.nonselected_maintab a{ text-decoration:none; color:#FFF; }
+.nonselected_maintab a:hover{ text-decoration:none; color:#FFF; }
+label{font:bold 10pt "Trebuchet MS",Arial,sans-serif; }
+.hideme{display:none}
+#main_icon{margin-top:0.5em;}
+.error{background:#FFEEEE;color:#AB0000;border:1px solid #DD0000;font-weight:bold;}
+.notice{background:#FFF5CC;color:#996600;border:1px solid #FFCC11;font-weight:bold;}
+.success{background:#E6F8DD;color:#006600;border:1px solid #119911;font-weight:bold;}
+.tableheader{background:url(/site_media/img/nav-bg.gif) repeat-x;color:#666;}
+.tableheader > td{font:bold 1.1em Arial,sans-serif;}
+.table_evenrow{background:#FFEEEE;color:#AB0000;}
+.table_oddrow{}
+.underline_tablecell{border-bottom:1px solid #CCC;}
+.screen_center{position:absolute;z-index:100;margin-top:40%;border:1px solid #FAFAFA;background:#CCC;padding:8px;width:auto;font:bold 1.2em Arial,sans-serif;}
+.screencenter_content{background:#FFF;color:#CD0000;padding:8px;}
+.disablebackground{overflow:hidden;width:100%;height:100%;display:none;opacity:0.5;z-index:1000;}
+.leftclear{clear:left;width:0%;height:0%;}
+.rightclear{clear:right;width:0%;height:0%;}
+.bothclear{clear:both;width:0%;height:0%;}
+.required{color:#F00;font:normal 1em Arial,sans-serif;}
+.small-size{font-size:0.5em;font-weight:normal}
+.regular-size{font-size:1em;}
+.just-big{font:bold 1.3em Arial,sans-serif;}
+
+/*Homepage Styles*/
+/*.service_button{background: transparent url('/site_media/img/leftroundbutton_13x45.png') no-repeat left;color:#666;font:bold 1.4em "Helvetica",Arial,sans-serif;padding:18px;text-decoration:none;}*/
+/*.service_button_label{font:bold 1.4em "Helvetica",Arial,sans-serif;background: transparent url('/site_media/img/centerroundbutton_13x45.png') repeat-x center;padding:18px;color:#666;}*/
+#service_punchline{font:bold 1.5em Arial,sans-serif;text-align:center;}
+.service{color:#666;font:bold 1.4em "Helvetica",Arial,sans-serif;background:url(/site_media/img/servicelabel_background_310x40.png) repeat-x;padding:8px;margin-bottom:1em;text-align:center;}
+.extrabox{font:bold 1.4em "Helvetica",Arial,sans-serif;color:#666;border:1px solid #CCC;text-align:center;height:12.5em;}
+.restaurant_name{text-align:left;font:bold 0.875em "Helvetica",Arial,sans-serif;}
+.extrabox_header{border-bottom:2px solid #CCC;margin-bottom:1em;}
+#restaurants_list{border:2px solid #FFCC99;color:#9B0F09;background-color:#FFFFDD;padding:0px;position:fixed;z-index:20000;width:500px;left:20%;top:40%;}
+#restaurants_list_header{background-color:#5b0e00;color:#FFF;height:16px;text-align:right;padding-top:2px;padding-right:2px;padding-bottom:2px;}
+.offer_notes{font:bold 0.875em Arial,sans-serif;text-align:left;margin-left:2em;line-height:2em;}
+#offers_widget{text-decoration:none;cursor:pointer;}
+
+/*Terms Page Styles*/
+.term_style{margin-bottom:4px;font-family:sans-serif;font-size:14px;list-style-type:decimal;padding:4px;}
+
+/*Restaurants Page Styles*/
+.restaurant_selected{width:100%;padding:4px;list-style-type:none;color:#FFF;font:bold 1.1em Arial,sans-serif;cursor:pointer;background:url(/site_media/img/selected_restaurant_2x35.png) repeat-x;}
+.restaurant_nonselected{width:98%;padding:4px;list-style-type:none;color:#666;font:bold 1.1em Arial,sans-serif;cursor:pointer;background:url(/site_media/img/nonselected_restaurant_2x35.png) repeat-x;}
+.restaurant_menuitem{padding:4px;border-bottom:1px solid #CD0000;font:bold 1.1em "Helvetica",Arial,sans-serif;cursor:pointer;}
+#checkout_header{text-align:center;font:bold 1.2em Arial,sans-serif;background:url(/site_media/img/itemcart_header_background.gif) repeat-x;color:#FFF;padding:4px;}
+#checkout_items{min-height:300px;}
+#checkout_items_cost{color:#666;font:bold 1.1em "Helvetica",Arial,sans-serif;background:#FAFAFA;padding:4px;border:1px solid #CCC;}
+#cost_header{text-align:center;}
+#items_cost{color:#CD0000;font:bold 1.2em Arial,sans-serif;text-align:center;}
+.menuitem_name{color:#666;font:bold 1em Arial,sans-serif;float:left;width:250px;}
+.menuitem_cost{color:#CD0000;font:bold 1em Arial,sans-serif;text-align:right;float:left;width:100px;margin-right:40px;}
+.cart_item > .item_name{text-align:left;padding:4px;width:90px;overflow:hidden;font:bold 1em Arial,sans-serif;color:#666;border:1px solid #CCC;background:#FAFAFA;float:left;}
+.cart_item > .item_cost{text-align:center;padding:4px;width:80px;font:bold 1em Arial,sans-serif;color:#CD0000;border:1px solid #CCC;background:#FAFAFA;float:left;}
+.cart_item > .delete_link{padding:4px;float:right;}
+
+/*HomeFood Page Styles*/
+.address{border:1px solid #CCC;padding:1em;}
+.address legend{color:#CD0000;}
+.help_links{margin-bottom:1em;color:#666;font:bold 1.2em "Helvetica",Arial,sans-serif;background:#FAFAFA;padding:4px;border:1px solid #CCC;text-align:center;}
+.service_line{font:bold 1.4em Arial,sans-serif;color:#666;line-height:1.5em;}
+#main_bar{border-bottom:2px solid #666;}
+#map_contact{border:1px solid #CCC;padding:10px;}
+.homefood_header{background:#FAFAFA;color:#666;font:bold 1em Arial,sans-serif;border:1px solid #CCC;padding:4px;}
+.homefood_content{border:1px solid #CCC;padding:4px;}
+#map{height:400px;}
+
+/*Messfood Page Styles*/
+#new_mess{width:auto;}
+
+/*Account Page Styles*/
+#account_info_header{background:url(/site_media/img/tab_background_2x40.png) repeat-x;font:bold 1.1em Arial,sans-serif; color:#666;padding:6px;}
+#account_info table tr label{font:bold 10pt "Trebuchet MS",Arial,sans-serif;}
+
+/*OrderSummary Page Styles*/
+.ordersummary_info{color:#666;font:normal 1.6em Arial,sans-serif;}
+
+/*Order Details Page Styles*/
+.address_label{font:bold 10pt "Trebuchet MS",Arial,sans-serif;}
+.address_value{font:normal 1.2em Arial,sans-serif;}

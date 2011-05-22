@@ -1,0 +1,60 @@
+{%if available_hours%}
+	{%if order_information%}
+		{%for iteminfo in order_information%}
+			<input type='hidden' value='{{iteminfo.menuitem.id}}-{{iteminfo.quantity}}' class='confirmeditem' name='menuitem'/>
+			<tr id='orderitem_{{iteminfo.menuitem.id}}' class='orderitem {%cycle "table_evenrow" "table_oddrow"%}'>
+				<td>{{iteminfo.menuitem.item.name}}</td>
+				<td>{{iteminfo.menuitem.cost}}</td>
+				<td>{{iteminfo.quantity}}</td>
+				<td><span class='netcost'>{{iteminfo.netcost}}</span></td>
+			</tr>
+		{%endfor%}
+		<tr class='orderitemcosts'>
+			<td colspan='4'><hr style='border:1px solid #CD0000;'/></td>
+		</tr>
+		<tr class='orderitemcosts'>
+			<td colspan='3' align='right' style='font:bold 1.2em Arial,sans-serif;color:#666;'>Foods Cost</td>
+			<td><span id='foodscost' style='font:bold 1.2em Arial,sans-serif;color:#666;'>{{foodscost}}</span></td>
+		</tr>
+		<tr class='orderitemcosts'>
+			<td colspan='3' align='right' style='font:bold 1.2em Arial,sans-serif;color:#666;'>VAT by Restaurant @ <span class='special_red'>{{vat_percentage_display}}%</span></td>
+			<td><span id='vatcharges' style='font:bold 1.2em Arial,sans-serif;color:#666;'>{{vat_charges}}</span></td>
+		</tr>
+		<tr class='orderitemcosts'>
+			<td colspan='3' align='right' style='font:bold 1.2em Arial,sans-serif;color:#666;'>Favmeal Service Charge</td>
+			<td><span id='servicecharge' style='font:bold 1.2em Arial,sans-serif;color:#666;'>{{service_charge}}</span></td>
+		</tr>
+		<tr class='orderitemcosts'>
+			<td colspan='4'><hr style='border:1px solid #CD0000;'/></td>
+		</tr>
+		<tr class='orderitemcosts'>
+			<td colspan='3' align='right' style='font:bold 1.2em Arial,sans-serif;color:#666;'><span class='special_blank' style='font-weight:bold;'>Total Bill</span></td>
+			<td><span id='totalbill' class='special_red' style='font:bold 1.2em Arial,sans-serif;color:#666;'>{{total_bill}}</span></td>
+		</tr>
+		<tr class='ordertime'>
+			<td colspan='4'>I want my food within 
+			<select id='available_hours'>
+				{%for hour in available_hours%}
+					<option value='{{hour}}' onclick='javascript:change_deliverytime();'>{{hour}}</option>
+				{%endfor%}
+			</select> hours</td>
+		</tr>
+		<tr class='ordertime' style='background:#FAFAFA;'>
+			<td colspan='4'>Food Delivery Time: <span id='deliverytime' class='special_black'>{{food_deliverytime|date:"f A"}}</span></td>
+		</tr>
+		<tr class='buttons'>
+			<td colspan='2' align='right'><input name='confirmorder_button' id='id_confirmorder_button' type='button' value='Confirm' onclick='javascript:post_order();return false;'/></td>
+			<td colspan='2' align='left'><input name='cancelorder_button' id='id_cancelorder_button' type='button' value='Cancel' onclick='javascript:closecart();return false;'/></td>
+		</tr>
+	{%else%}
+		<tr>
+			<td colspan='4'>
+				Please prepare the Items Cart and then click checkout button&nbsp;&nbsp;<span style='border-bottom:1px solid #CD0000;cursor:pointer;' onclick='javascript:closecart();return false;'>Close</span>
+			</td>
+		</tr>
+	{%endif%}
+{%else%}
+	<tr>
+		<td colspan='4'><span class='special_black' style='font-weight:bold;'>Sorry! Time is up. Orders should only be placed between <span class='special_red'>{{min_time|date:"f A"}}</span> and <span class='special_red'>{{max_time|date:"f A"}}</span></span></td>
+	</tr>
+{%endif%}

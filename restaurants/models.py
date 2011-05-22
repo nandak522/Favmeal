@@ -1,0 +1,1 @@
+from restaurants.restaurants_models import *

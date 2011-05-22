@@ -1,0 +1,11 @@
+{%if not restaurants%}
+	<div class='restaurant_selected'>No Restaurants Found</div>
+{%else%}
+	<ul id='restaurants' style='margin:0pt;'>
+	{%for restaurant in restaurants%}
+		<li id='{{restaurant.alias}}' class='restaurant_nonselected'>
+			{{restaurant.name|title}}
+		</li>
+	{%endfor%}		
+	</ul>
+{%endif%}

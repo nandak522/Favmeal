@@ -1,0 +1,1 @@
+from messfood.messfood_views import *

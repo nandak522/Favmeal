@@ -1,0 +1,4 @@
+User-Agent: *
+Sitemap: http://www.favmeal.com/sitemaps.xml
+Allow: /
+

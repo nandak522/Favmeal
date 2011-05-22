@@ -1,0 +1,29 @@
+{%extends "globals/singlepane_base.html"%}
+{%block title%}Registered Users - FavMeal{%endblock%}
+{%block content%}
+	<div class='static_page_header special_red'>List of all Registered Users, &nbsp;<a class='special_black_link' href='{%url allorders%}'>Check Orders?</a></div>
+	{%if userprofiles%}
+		<table>
+			<tr class='tableheader'>
+				<td>Date</td>
+				<td>Email</td>
+				<td>Service Type</td>
+				<td>Mobile</td>
+				<td>From</td>
+				<td>To</td>
+			</tr>
+			{%for userprofile in userprofiles%}
+				<tr class={%cycle 'table_evenrow' 'table_oddrow'%}>
+					<td>{{userprofile.created_on|date:"f A jS N"}}</td>
+					<td>{{userprofile.email|capfirst}}</td>
+					<td>{{userprofile.get_service_type|capfirst}}</td>
+					<td>{{userprofile.mobile}}</td>
+					<td>{%ifequal userprofile.get_service_type 'restaurantfood'%}---{%else%}{{userprofile.source.place}},&nbsp;<br/>{{userprofile.source.landmark}},&nbsp;<br/>{{userprofile.source.area}}{%endifequal%}</td>
+					<td>{{userprofile.destination.place}},&nbsp;<br/>{{userprofile.destination.landmark}},&nbsp;<br/>{{userprofile.destination.area}}</td>
+				</tr>
+			{%endfor%}
+		</table>
+	{%else%}
+		No Registrations Till Now.
+	{%endif%}
+{%endblock%}

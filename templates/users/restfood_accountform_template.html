@@ -1,0 +1,28 @@
+<div id='account_info'>
+	<div id='account_info_header'>Personal Information</div>
+	<table>
+		<tr>
+			<td><label for='id_password'>Password</label></td>
+			<td>{{accountform.password}}</td>
+		</tr>
+		<tr>
+			<td><label for='id_mobile'>Mobile</label></td>
+			<td>{{accountform.mobile}}</td>
+		</tr>
+	</table>
+	<div id='account_info_header'>Address Information</div>
+	<table>
+		<tr>
+			<td><label for='id_office_place'>Company Name/Building{%if accountform.fields.office_place.required%}&nbsp;<span class='required'>(required)</span>{%endif%}</label><br/>{{accountform.office_place}}</td>
+		</tr>
+		<tr>
+			<td><label for='id_office_landmark'>Landmark{%if accountform.fields.office_landmark.required%}&nbsp;<span class='required'>(required)</span>{%endif%}</label><br/>{{accountform.office_landmark}}</td>
+		</tr>
+		<tr>
+			<td><label for='id_office_area'>Area/Junction{%if accountform.fields.office_area.required%}&nbsp;<span class='required'>(required)</span>{%endif%}</label><br/>{{accountform.office_area}}</td>
+		</tr>
+		<tr>
+			<td><label for='id_office_zip'>Zip{%if accountform.fields.office_zip.required%}&nbsp;<span class='required'>(required)</span>{%endif%}</label><br/>{{accountform.office_zip}}</td>
+		</tr>
+	</table>	
+</div><!-- end of account_info -->

@@ -1,0 +1,43 @@
+{%extends 'globals/threepane_base.html'%}
+{%block title%}Restaurant Food Delivery - FavMeal{%endblock%}
+{%block disablebackground%}
+<div id='confirm_cart' class='screen_center span-10' style='display:none;width:40%;'>
+	<div class='screencenter_content'>
+		<div class='screencenter_content_header'>
+			<span id='summary_header' class='special_red' style='font-weight:bold;margin-bottom:1em;'>Your Order Summary</span>
+			<span style='float:right;background:transparent url(/site_media/img/icon_deletelink.gif) no-repeat scroll center center;width:20px;height:20px;position:absolute;right:10px;top:10px;cursor:pointer;' onclick="javascript:closecart();return false;">&nbsp;&nbsp;</span>
+		</div>
+		<div class='screencenter_content_maincontent'>
+			<table id='checkout_confirmationsummary' summary='checkout_confirmationsummary'>
+				<tr class='tableheader'>
+					<td>Item Name</td><td>Item Cost</td><td>Quantity</td><td>Net Cost</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+{%endblock%}
+{%block leftbar%}
+{%include 'restaurants/restaurants_list.html'%}
+{%endblock%}
+{%block main-content%}
+<div id='restaurants_menu' style='height:430px;overflow:auto;'>
+	<div id='left_arrow' style='float:left;'>
+		<img src='/site_media/img/empty_restaurants_left_32x50.png' alt='leftarrow'/>
+	</div>
+	<div id='selectrestaurants_message' style='color:#666;width:400px;float:left;text-align:center;margin-left:6px;padding-top:15px;padding-bottom:10px;font:bold 1.1em Arial,sans-serif;'>
+		Click any Restaurant Name on the left hand side to get the corresponding Menu
+	</div>
+	<div id='right_arrow' style='float:left;'>
+		<img src='/site_media/img/empty_restaurants_right_32x50.png' alt='rightarrow'/>
+	</div>
+	<div class='leftclear'>&nbsp;</div>
+</div><!-- end of restaurants_menu -->
+{%endblock%}
+{%block rightbar%}
+{%include 'restaurants/item_cart.html'%}
+{%endblock%}
+{%block extrajs%}
+<script type='text/javascript' src='/site_media/js/jquery/jquery.center.js'></script>
+<script type='text/javascript' src='/site_media/js/restaurants.js'></script>
+{%endblock%}
